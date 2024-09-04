@@ -15,7 +15,7 @@ uint8 Flag_Qian,Flag_Hou,Flag_Left,Flag_Right,Flag_sudu=2; //蓝牙遥控相关的变量
 uint8 Flag_Stop=0,Flag_Show=1;
 
 float Vertical_Kp=315;//315;      //直立环Kp315
-float Vertical_Kd=-10;      //直立环Kd0
+float Vertical_Kd=-5;      //直立环Kd0
 
 float Velocity_Kp=-75.0;//-26.3;     //速度环Kp-23.5
 float Velocity_Ki=-0.35;//-0.11;     //速度环Ki-0.1

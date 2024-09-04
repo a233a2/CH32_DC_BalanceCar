@@ -12,7 +12,7 @@
 
 #define PRESS_ENTER C4
 #define PRESS_NEXT C5
-
+extern float ADC_Vol;
 
 void LED_Blink_Init(void);
 void LED_Light(void);
@@ -27,6 +27,9 @@ void Y_angle_ZeroOFFset_get(void);
 void Beep_Test(void);
 void Beep_Ring_500MS(void);
 
-extern const uint8  choumao[877];
+
+
+void ADC_Vol_get_Init(void);
+void ADC_Vol_get(void);
 
 #endif /* OTHER_H_ */

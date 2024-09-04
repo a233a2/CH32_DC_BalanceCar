@@ -39,6 +39,7 @@
 
 
 
+#include <pid_1.h>
 #include "stdio.h"
 #include "stdint.h"
 #include "string.h"
@@ -142,10 +143,12 @@
 //===================================================用户自定义文件===================================================
 #include "Other.h"
 #include "pid.h"
+#include "pid_1.h"
 #include "buletooth.h"
 #include "filter.h"
 #include "motor.h"
 #include "ecoder.h"
+
 //===================================================用户自定义文件===================================================
 //#include "vfd_8md06inkm.h"
 

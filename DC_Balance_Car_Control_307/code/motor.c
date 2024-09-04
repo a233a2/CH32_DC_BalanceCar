@@ -5,7 +5,7 @@
  *      Author: SJY
  */
 #include "zf_common_headfile.h"
-#define MOTOR_PWM_FREC 7000
+#define MOTOR_PWM_FREC 17000
 
 void Motor_Init(void)
 {

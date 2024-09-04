@@ -77,13 +77,23 @@ void EXTI4_IRQHandler(void) __attribute__((interrupt()));
 void EXTI9_5_IRQHandler(void) __attribute__((interrupt()));
 void EXTI15_10_IRQHandler(void) __attribute__((interrupt()));
 
+
+
+
 void USART1_IRQHandler(void)
 {
     if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
     {
+
+
         USART_ClearITPendingBit(USART1, USART_IT_RXNE);
+
     }
 }
+
+
+
+
 void USART2_IRQHandler(void)
 {
     if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET)
@@ -276,31 +286,53 @@ void EXTI15_10_IRQHandler(void)
     }
 }
 
-
+//1ms
 void TIM1_UP_IRQHandler(void)
 {
     if(TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)
     {
-        Main_PID_Progrem();
 
-        VOFA_Test();
+        Main_PID_Progrem_1();
 
-//        ips114_show_float(80,0,Angle_Y,4,3);//main
-//        ips114_show_float(80,30,Gyro_Y,4,3);//main
-//        ips114_show_float(80,50,M0_Angle,4,1);
-//        ips114_show_float(80,70,M1_Angle,4,1);
 
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
     }
 }
+//50ms
+void TIM5_IRQHandler(void)
+{
+    if(TIM_GetITStatus(TIM5, TIM_IT_Update) != RESET)
+    {
+        UART_Control_Read();           //读取遥控数据
+        Control_Read();
+        Canshu_Adj();  //参数动态调整
+
+        VOFA_Test();
+
+        ADC_Vol_get();
+
+ //       ips114_show_float(80,0,Angle_Y,4,3);//main
+ //       ips114_show_float(80,30,Gyro_Y,4,3);//main
+ //       ips114_show_float(80,50,M0_Angle,4,1);
+ //       ips114_show_float(80,70,M1_Angle,4,1);
+       TIM_ClearITPendingBit(TIM5, TIM_IT_Update );
+
+
+    }
+}
+
+
+
 
 
 void TIM2_IRQHandler(void)
 {
     if(TIM_GetITStatus(TIM2, TIM_IT_Update) != RESET)
     {
+
+
+
        TIM_ClearITPendingBit(TIM2, TIM_IT_Update );
-       gpio_toggle_level(E2);
 
     }
 }
@@ -309,6 +341,7 @@ void TIM3_IRQHandler1(void)
 {
     if(TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
     {
+
        TIM_ClearITPendingBit(TIM3, TIM_IT_Update );
 
 
@@ -324,17 +357,6 @@ void TIM4_IRQHandler1(void)
 
     }
 }
-
-void TIM5_IRQHandler(void)
-{
-    if(TIM_GetITStatus(TIM5, TIM_IT_Update) != RESET)
-    {
-       TIM_ClearITPendingBit(TIM5, TIM_IT_Update );
-
-
-    }
-}
-
 void TIM6_IRQHandler(void)
 {
     if(TIM_GetITStatus(TIM6, TIM_IT_Update) != RESET)

@@ -27,9 +27,6 @@ void Key_Init(void)
 }
 
 
-
-
-
 void Beep_Test(void)
 {
     if(gpio_get_level(C5)==0)
@@ -38,5 +35,15 @@ void Beep_Test(void)
     }
 }
 
+void ADC_Vol_get_Init(void)
+{
+    adc_init(ADC1_IN4_A4,ADC_12BIT);
+}
 
-
+float ADC_Vol;
+void ADC_Vol_get(void)
+{
+    float Vol;
+    Vol=adc_mean_filter_convert(ADC1_IN4_A4,5);
+    ADC_Vol=Vol*15.7/4096;
+}
